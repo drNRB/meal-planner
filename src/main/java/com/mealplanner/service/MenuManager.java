@@ -122,16 +122,13 @@ public class MenuManager {
                         System.out.println("No meals found for " + category + ". Please add some meals first.");
                         return;
                     }
-                    // Sortowanie dań alfabetycznie według nazwy
                     meals.sort((m1, m2) -> m1.getName().compareToIgnoreCase(m2.getName()));
-                    // Wyświetlanie posortowanych dań
                     for (Meal meal : meals) {
                         System.out.println(meal.getName());
                     }
                     while (true) {
                         System.out.println("Choose the " + category + " for " + day + " from the list above:");
                         String chosenName = inputHandler.readLine();
-                        // Walidacja wyboru użytkownika
                         Meal chosenMeal = meals.stream()
                                 .filter(m -> m.getName().equals(chosenName))
                                 .findFirst()
@@ -147,7 +144,6 @@ public class MenuManager {
                 System.out.println("Yeah! We planned the meals for " + day + ".");
                 System.out.println();
             }
-            // Wyświetlenie całego planu
             displayPlan(dbConnector.getPlan());
         } catch (SQLException e) {
             System.out.println("Error planning meals.");
